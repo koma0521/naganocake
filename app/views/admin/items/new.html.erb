@@ -1,6 +1,22 @@
 <h2>商品新規登録</h2>
 
 <%= form_for @item,url: admin_items_path do |f|%>
+    <% if @item.errors.any? %>
+                    <div id="error_explanation">
+                      <div class="panel panel-default">
+                              <div class="panel-heading">
+                                  <h2><%= @genre.errors.count %>件のエラーが発生しました。</h2>
+                              </div>
+                              <div class="panel-body">
+                                  <ul>
+                                      <% @genre.errors.full_messages.each do |message| %>
+                                      <li><%= message %></li>
+                                      <% end %>
+                                  </ul>
+                              </div>
+                        </div>
+                    </div>
+    <% end %>
     <%= f.attachment_field :image %>
     <%= f.text_field :name%>
     <%= f.text_area :introduction %>
