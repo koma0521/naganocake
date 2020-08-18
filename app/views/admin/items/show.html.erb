@@ -1,0 +1,14 @@
+<div class="row">
+    <div class="col-xs-6">
+    <h2>商品詳細</h2>
+    <%= image_tag attachment_url(@item, :image, :fill, 300, 300, format: "jpg") %>
+    </div>
+    <div class="col-xs-6">
+        <p><span>商品名</span><%= @item.name%></p>
+        <p><span>商品説明</span><%= @item.introduction%></p>
+        <p><span>ジャンル</span><%= @item.genre.name%></p>
+        <p><span>税込み価格（税抜き価格）</span><%= @item.price.to_s(:delimited)%>(<%= @price.floor.to_s(:delimited)%>)円</p>
+        <p><span>販売ステータス</span><%= @item.is_active%></p>
+        <p><%= link_to "編集する",edit_admin_item_path(@item)%></p>
+    </div>
+</div>
