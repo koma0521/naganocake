@@ -12,6 +12,9 @@ Rails.application.routes.draw do
 
   get 'end_users_mypage' => "public/end_users#show",as: :mypage
   root "public/items#top"
+  scope module: :public do
+    resources :addresses,except: [:show,:new]
+  end
 
   namespace :admin do
     root 'top#top'
