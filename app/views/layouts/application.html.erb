@@ -11,8 +11,67 @@
 
   <body>
     <header>
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        
+      <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Brand</a>
+          </div>
+
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <% if end_user_signed_in? %>
+              <ul class="nav navbar-nav navbar-right">
+                <li><%= link_to "マイページ",mypage_path%></li>
+              </ul>
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">商品一覧</a></li>
+              </ul>
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">カート</a></li>
+              </ul>
+              <ul class="nav navbar-nav navbar-right">
+                <li><%= link_to  "ログアウト",destroy_end_user_session_path,method: :delete %></li>
+              </ul>
+            <% elsif admin_signed_in?%>
+
+              <ul class="nav navbar-nav navbar-right">
+                <li><%= link_to "商品一覧",admin_items_path%></li>
+              </ul>
+
+              <ul class="nav navbar-nav navbar-right">
+                <li><%= link_to "顧客一覧",admin_end_users_path%></li>
+              </ul>
+
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">注文履歴一覧</a></li>
+              </ul>
+
+              <ul class="nav navbar-nav navbar-right">
+                <li><%= link_to "ジャンル一覧",admin_genres_path %></li>
+              </ul>
+              
+              <ul class="nav navbar-nav navbar-right">
+                <li><%= link_to  "ログアウト",destroy_admin_session_path,method: :delete %></li>
+              </ul>
+            <%else%>
+
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">About</a></li>
+                <li><a href="#">商品一覧</a></li>
+                <li><%= link_to  "新規登録",new_end_user_registration_path %></li>
+                <li><%= link_to  "ログイン",new_end_user_session_path %></li>
+              </ul>
+
+            <% end %>
+          </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
       </nav>
     </header>
     <div class="container">
