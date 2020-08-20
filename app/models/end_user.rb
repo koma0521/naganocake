@@ -29,4 +29,8 @@ class EndUser < ApplicationRecord
   def name_kana
     [first_name_kana,last_name_kana].join('')
   end
+
+  def active_for_authentication?
+    super && self.is_deleted == '有効'
+  end
 end
