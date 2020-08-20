@@ -1,0 +1,14 @@
+<h2>商品一覧<span>(全<%= @items.count%>件)<span></h2>
+
+<div class="row">
+    <% @items.each do |item|%>
+        <div class="col-xs-3">
+            <%= link_to item_path(item) do%>
+                <%= image_tag attachment_url(item, :image, :fill, 150, 150, format: "jpg") %>
+            <% end %>
+            <p><%= item.name%></p>
+            <p><%= item.price%></p>
+        </div>
+    <% end %>
+    <%= paginate @items %>
+</div>

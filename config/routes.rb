@@ -12,8 +12,12 @@ Rails.application.routes.draw do
 
   get 'end_users_mypage' => "public/end_users#show",as: :mypage
   root "public/items#top"
+  
   scope module: :public do
     resources :addresses,except: [:show,:new]
+    resources :items,only: [:index,:show]
+    delete "cart_items/destroy_all" => "cart_items#destroy_all",as: :destroy_all
+    resources :cart_items,except: [:show,:new,:edit]
   end
 
   namespace :admin do

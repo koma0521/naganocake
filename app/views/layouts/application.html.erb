@@ -31,10 +31,10 @@
                 <li><%= link_to "マイページ",mypage_path%></li>
               </ul>
               <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">商品一覧</a></li>
+                <li><%= link_to "商品一覧",items_path %></li>
               </ul>
               <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">カート</a></li>
+                <li><%= link_to "カート",cart_items_path%></li>
               </ul>
               <ul class="nav navbar-nav navbar-right">
                 <li><%= link_to  "ログアウト",destroy_end_user_session_path,method: :delete %></li>
