@@ -21,6 +21,9 @@ Rails.application.routes.draw do
     get 'end_users/unsubscribe' =>  "end_users#unsubscribe",as: :unsubscribe
     patch 'end_users/withdraw' => "end_users#withdraw",as: :withdraw
     resources :end_users,only: [:show,:edit,:update]
+    post "confirm" => "orders#confirm",as: :confirm
+    get "complete" => "orders#complete",as: :complete
+    resources :orders,only: [:new,:index,:show,:create]
   end
 
   namespace :admin do

@@ -5,4 +5,8 @@ class CartItem < ApplicationRecord
   def subtotal
     item.price * amount
   end
+
+  def tax_price
+    (item.price * 1.1).floor
+  end
 end

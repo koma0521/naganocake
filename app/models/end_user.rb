@@ -8,6 +8,7 @@ class EndUser < ApplicationRecord
 
   has_many :addresses
   has_many :cart_items
+  has_many :orders
 
   validates :first_name,presence: true
   validates :last_name,presence: true
@@ -21,6 +22,7 @@ class EndUser < ApplicationRecord
   def total_price
     cart_items.to_a.sum{|item| item.subtotal}
   end
+
 
   def name
     [first_name,last_name].join('')
