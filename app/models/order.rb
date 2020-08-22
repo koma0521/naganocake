@@ -6,4 +6,6 @@ class Order < ApplicationRecord
   attribute :shipping_cost, default: 800
   attribute :status, default: 0
   attr_reader :add
+  has_many :order_details
+
 end

@@ -9,7 +9,7 @@
 
     <h3>お届け先</h3>
         <div>
-            <label><%= f.radio_button :add, 0 %>自身の住所</label>
+            <label><%= f.radio_button :add, 0,:checked=>'checked' %>自身の住所</label>
             <%= @end_user.postal_code%>
             <%= @end_user.address%>
             <%= @end_user.name%>

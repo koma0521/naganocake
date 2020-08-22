@@ -48,13 +48,14 @@ class Public::OrdersController < ApplicationController
                 @address.end_user_id = current_end_user.id
                 @address.save
             end
-
-            current_end_user.cart_items.each do |cart_item|
-                order_detail = OrderDetail.new
-                order_detail.order_id = @order.id
-                order_detail.item_id = cart_item.item_id
-                order_detail.amount = cart_item.amount
-                order_detail.price = cart_item.item.price
+            #@order.save
+            @end_user.cart_items.each do |cart_item|
+                order_detail = @order.order_details.build
+                #order_detail = OrderDetail.new
+                #order_detail.order_id = @order.id.to_i
+                order_detail.item_id = cart_item.item_id.to_i
+                order_detail.amount = cart_item.amount.to_i
+                order_detail.price = cart_item.item.price.to_i
                 order_detail.save
                 cart_item.destroy
             end
@@ -67,6 +68,7 @@ class Public::OrdersController < ApplicationController
     end
 
     def index
+        @orders = current_end_user.orders
     end
 
     def show
@@ -78,6 +80,6 @@ class Public::OrdersController < ApplicationController
         end
 
         def order_params
-            params.require(:order).permit(:postal_code,:address,:name,:shipping_cost,:totalpayment,:payment_method,:status,:end_user,:status).merge(end_user_id: current_end_user.id)
+            params.require(:order).permit(:postal_code,:address,:name,:shipping_cost,:totalpayment,:payment_method,:status,:end_user_id,:status).merge(end_user_id: current_end_user.id)
         end
 end
