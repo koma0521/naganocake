@@ -1,5 +1,6 @@
 class Public::OrdersController < ApplicationController
     before_action :set_end_user
+    before_action :authenticate_end_user!
     def new
         @order = Order.new
         @addresses = @end_user.addresses
@@ -48,7 +49,7 @@ class Public::OrdersController < ApplicationController
                 @address.end_user_id = current_end_user.id
                 @address.save
             end
-            #@order.save
+            #@order.saved
             @end_user.cart_items.each do |cart_item|
                 order_detail = @order.order_details.build
                 #order_detail = OrderDetail.new
@@ -72,6 +73,7 @@ class Public::OrdersController < ApplicationController
     end
 
     def show
+        @order = Order.find(params[:id])
     end
 
     private

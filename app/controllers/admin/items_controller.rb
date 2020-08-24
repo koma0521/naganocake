@@ -1,6 +1,11 @@
 class Admin::ItemsController < ApplicationController
+    before_action :authenticate_admin! 
     def index 
-        @items = Item.all
+        if params[:search].nil?
+            @items = Item.all
+        else
+            @items = Item.where('name LIKE ?', "%#{search}%")
+        end        
     end
 
     def new
@@ -38,6 +43,6 @@ class Admin::ItemsController < ApplicationController
 
     private
         def item_params
-            params.require(:item).permit(:genre_id,:name,:image,:introduction,:price,:is_active)
+            params.require(:item).permit(:genre_id,:name,:image,:introduction,:price,:sale_status)
         end
 end

@@ -1,7 +1,8 @@
 class Admin::GenresController < ApplicationController
+    before_action :authenticate_admin!
     def index
         @genre = Genre.new
-        @genres = Genre.all
+        @genres = Genre.where(is_active: true)
     end
 
     def create

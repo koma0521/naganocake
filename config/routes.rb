@@ -31,6 +31,8 @@ Rails.application.routes.draw do
     resources :items,except: [:destroy]
     resources :genres,only: [:index,:create,:edit,:update]
     resources :end_users,except: [:destroy,:new,:create]
+    resources :orders,only: [:index,:show,:update]
+    resources :order_details,only: [:update]
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

@@ -1,0 +1,64 @@
+<h2>注文履歴詳細</h2>
+
+<table>
+    <tr>
+        <td>購入者</td>
+        <td><%= @order.end_user.name%></td>
+    </tr>
+    <tr>
+        <td>配送先</td>
+        <td><%= @order.postal_code%>
+            <%= @order.address%><br>
+            <%= @order.name%>
+        </td>
+    </tr>
+    <tr>
+        <td>支払い方法</td>
+        <td><%= @order.payment_method%></td>
+    </tr>
+
+    <tr>
+        <td>支払いステータス</td>
+        <td>
+            <%= form_for @order,url: admin_order_path(@order) do |f|%>
+                <%= f.select :status, Order.statuses.keys, :selected=>Order.statuses[@order.status] %>
+                <%= f.button "更新",class: "btn btn-danger"%>
+            <% end %>
+        </td>
+    </tr>
+</table>
+
+<table>
+    <thead>
+        <tr>
+            <th>商品名</th>
+            <th>単価税込み</th>
+            <th>数量</th>
+            <th>小計</th>
+            <th>制作ステータス</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @order.order_details.each do |detail| %>
+            <td><%= detail.item.name%></td>
+            <td><%= detail.price%></td>
+            <td><%= detail.amount%></td>
+            <td><%= detail.subtotal%></td>
+            <td>
+                <%= form_for detail,url: admin_order_detail_path(detail) do |f|%>
+                    <%= f.select :making_status, OrderDetail.making_statuses.keys.to_a%>
+                    <%= f.submit "更新する",class: "btn btn-primary"%>
+                <% end %>
+            </td>
+        <% end %>
+    </tbody>
+</table>
+
+<h2>商品合計</h2>
+<%= @order.total_price%>
+<h2>送料</h2>
+<%= @order.shipping_cost%>
+<h2>請求金額合計</h2>
+<% @billing_payment = @order.total_price.to_i + @order.shipping_cost.to_i%>
+<%= @billing_payment%>
+

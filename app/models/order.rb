@@ -8,4 +8,13 @@ class Order < ApplicationRecord
   attr_reader :add
   has_many :order_details
 
+  def total_price
+    self.order_details.to_a.sum{|item| item.subtotal}
+  end
+
+  def total_amount
+    self.order_details.to_a.sum{|item| item.amount}
+  end
+
+
 end
