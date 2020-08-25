@@ -1,0 +1,23 @@
+ja:
+  activerecord:
+    models: 
+      end_user:
+    attributes:
+      end_user:
+        first_name: 名前
+        last_name: 姓
+        first_name_kana: フリガナ
+        last_name_kana: フリガナ
+        postal_code: 郵便番号
+        address: 住所
+        telephone_number: 電話番号
+        email: メールアドレス
+      item:
+        image: 商品画像
+        name: 商品名
+        introduction: 商品説明
+        price: 税抜き価格
+      genre:
+        name: ジャンル名
+  
+
