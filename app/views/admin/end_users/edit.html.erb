@@ -17,7 +17,7 @@
                         </div>
                     </div>
                 <% end %>
-    <table>
+    <table class="table table-borderless">
             <tr>
                 <td>
                     会員ID
@@ -28,25 +28,37 @@
                 
             </tr>
             <tr>
-                <td>氏名</td>
+                <td><%= f.label :first_name,"氏名"%></td>
                 <td>
-                    <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name" %>
-                    <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name" %>
+                <div class ="row">
+                    <div class="col">
+                        <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name",class: "form-control" %>
+                    </div>
+                    <div class="col">
+                        <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name",class: "form-control" %>
+                    </div>
+                </div>
                 </td>
             </tr>
 
             <tr>
-                <td>フリガナ</td>
+                <td><%= f.label :first_name_kana,"フリガナ"%></td>
                 <td>
-                    <%= f.text_field :first_name_kana, autofocus: true, autocomplete: "last_name_kana" %>
-                    <%= f.text_field :last_name_kana, autofocus: true, autocomplete: "last_name_kana" %>
+                <div class="row">
+                    <div class="col">
+                        <%= f.text_field :first_name_kana, autofocus: true, autocomplete: "last_name_kana",class: "form-control" %>
+                    </div>
+                    <div class="col">
+                        <%= f.text_field :last_name_kana, autofocus: true, autocomplete: "last_name_kana",class: "form-control" %>
+                    </div>
+                </div>
                 </td>
             </tr>
 
             <tr>
                 <td><%= f.label :postal_code,"郵便番号" %></td>
                 <td>
-                    <%= f.text_field :postal_code, autofocus: true, autocomplete: "postal_code" %>
+                    <%= f.text_field :postal_code, autofocus: true, autocomplete: "postal_code",class: "form-control" %>
                 </td>
             </tr>
 
@@ -54,7 +66,7 @@
                 <td>
                     <%= f.label :address,"住所" %>
                     <td>
-                    <%= f.text_field :address, autofocus: true, autocomplete: "address" %>
+                    <%= f.text_field :address, autofocus: true, autocomplete: "address",class: "form-control" %>
                 </td>
             </tr>
 
@@ -62,27 +74,37 @@
                 <td>
                     <%= f.label :telephone_number,"電話番号" %>
                     <td>
-                    <%= f.text_field :telephone_number, autofocus: true, autocomplete: "telephone_number" %>
+                    <%= f.text_field :telephone_number, autofocus: true, autocomplete: "telephone_number",class: "form-control" %>
                 </td>
             </tr>
 
 
 
             <tr>
-                <%= f.label :email,"メールアドレス" %>
-                <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+                <td>
+                    <%= f.label :email,"メールアドレス" %>
+                </td>
+                <td>
+                    <%= f.email_field :email, autofocus: true, autocomplete: "email",class: "form-control" %>
                 </td>
             </tr>
 
             <tr>
-                    <%= f.radio_button :is_deleted, :有効 %>
-                    <%= f.label :有効 %>
-                    <%= f.radio_button :is_deleted, :退会済み %>
-                    <%= f.label :退会済み %>
+                <td>会員ステータス</td>
+                <td>
+                    <div class="form-check">
+                        <%= f.radio_button :is_deleted, :有効 %>
+                        <%= f.label :有効 %>
+                        <%= f.radio_button :is_deleted, :退会済み %>
+                        <%= f.label :退会済み %>
+                    </div>
+                </td>
             </tr>
 
             <tr>
-                <%= f.submit "変更を保存する",class: "btn btn-primary"%>
+                <td>
+                    <%= f.submit "変更を保存する",class: "btn btn-primary"%>
+                </td>
             </tr>
 
    

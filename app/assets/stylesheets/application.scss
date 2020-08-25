@@ -13,9 +13,51 @@
  *= require_tree .
  *= require_self
  */
-@import "bootstrap-sprockets";
 @import "bootstrap";
-
+* {
+    margin: 0;
+    padding: 0;
+box-sizing: border-box;
+}
 .container {
     margin-top:50px;
+}
+
+
+// admin
+.order_count {
+    font-size:25px;
+}
+.count {
+    text-decoration: underline;
+    text-decoration-color: black;
+    
+}
+
+.pagination {
+    justify-content: center;
+}
+
+.my-example {
+    color:greenyellow;
+}
+
+.icon {
+    text-align: right;
+}
+
+h2 {
+    margin-bottom: 20px;
+}
+
+.admin_item_to_edit {
+    margin-top: 30px;
+    justify-content: right;
+
+}
+
+.is_deleted {
+    border: black solid 1px;
+    background-color: skyblue;
+    border-radius: 3px;
 }

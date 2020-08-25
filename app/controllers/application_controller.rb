@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
         when EndUser
           mypage_path # ログイン後に遷移するpathを設定
         when Admin
-          admin_items_path
+         admin_top_path
         end
     end
 

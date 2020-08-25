@@ -1,5 +1,9 @@
 <h2>商品一覧</h2>
-<%= link_to "新規登録",new_admin_item_path%>
+<div class="icon">
+  <%= link_to new_admin_item_path do%>
+    <i class="fa fa-plus-circle my-example fa-2x"></i>
+  <% end %>
+</div>
 
 <table class="table">
   <thead>
@@ -23,3 +27,6 @@
     <% end %>
   </tbody>
 </table>
+<div class="pagination">
+  <%= paginate @items %>
+</div>

@@ -27,7 +27,7 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    root 'top#top'
+    root 'top#top',as: :top
     resources :items,except: [:destroy]
     resources :genres,only: [:index,:create,:edit,:update]
     resources :end_users,except: [:destroy,:new,:create]

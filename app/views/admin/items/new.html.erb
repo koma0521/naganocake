@@ -1,27 +1,2 @@
 <h2>商品新規登録</h2>
-
-<%= form_for @item,url: admin_items_path do |f|%>
-    <% if @item.errors.any? %>
-                    <div id="error_explanation">
-                      <div class="panel panel-default">
-                              <div class="panel-heading">
-                                  <h2><%= @item.errors.count %>件のエラーが発生しました。</h2>
-                              </div>
-                              <div class="panel-body">
-                                  <ul>
-                                      <% @item.errors.full_messages.each do |message| %>
-                                      <li><%= message %></li>
-                                      <% end %>
-                                  </ul>
-                              </div>
-                        </div>
-                    </div>
-    <% end %>
-    <%= f.attachment_field :image %>
-    <%= f.text_field :name%>
-    <%= f.text_area :introduction %>
-    <%= f.select :genre_id, [["ケーキ",1],["プリン",2],["焼き菓子",3],["キャンディ",4]]%>
-    <%= f.text_field :price %>
-    <%= f.select :sale_status, Item.sale_statuses.keys %>
-    <%= f.submit "新規登録",class: "btn btn-primary"%>
-<% end %>
+<%= render partial: "admin/shared/item_form",locals: {item: @item,btn: "新規登録"}%>
