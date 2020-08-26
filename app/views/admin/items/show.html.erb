@@ -8,7 +8,7 @@
     </div>
     <div class="col-md-3">
         <p><span class="mr-3">商品名</span><%= @item.name%></p>
-        <p><span class="mr-3">商品説明</span><%= @item.introduction%></p>
+        <p><span class="mr-3">商品説明</span><%= simple_format(@item.introduction, {}, sanitize: false)%></p>
         <p><span class="mr-3">ジャンル</span><%= @item.genre.name%></p>
         <p><span class="mr-3">税込み価格（税抜き価格）</span><%= @item.tax_price%>(<%= @item.price.to_s(:delimited)%>)円</p>
         <p><span class="mr-3">販売ステータス</span><%= @item.sale_status%></p>

@@ -1,39 +1,72 @@
 <h2>注文情報入力</h2>
 
-
-
 <%= form_for @order,url:confirm_path  do |f|%>
-    <h3>支払い方法</h3>
-        <label><%= f.radio_button :payment_method, 0,checked: true%>クレジットカード</label>
-        <label><%= f.radio_button :payment_method, 1%>銀行振り込み</label>
+    <p class="font-size-big">支払い情報</p>
+        <div class="mb-3">
+            <label><%= f.radio_button :payment_method, 0,checked: true%>クレジットカード</label><br>
+            <label><%= f.radio_button :payment_method, 1%>銀行振り込み</label>
+        </div>
 
-    <h3>お届け先</h3>
-        <div>
+    <p class="font-size-big">お届け先</p>
+        <div class="mb-3">
             <label><%= f.radio_button :add, 0,:checked=>'checked' %>自身の住所</label>
-            <%= @end_user.postal_code%>
-            <%= @end_user.address%>
-            <%= @end_user.name%>
+            <div class="ml-4">
+                <%= @end_user.postal_code%>
+                <%= @end_user.address%><br>
+                <%= @end_user.name%>
+            </div>
         </div>
         
 
-        <div>
+        <div class="mb-3">
             <label><%= f.radio_button :add, 1 %>登録先住所から選択</label>
-            <%= f.collection_select  :postal_code,@addresses, :postal_code,:view_postal_code_and_address_and_name %>
+            <div class="ml-4 row">
+                <div class="col-md-6">
+                    <%= f.collection_select  :postal_code,@addresses, :postal_code,:view_postal_code_and_address_and_name,{},class: "form-control" %>
+                </div>
+            </div>
         </div>
         
         <div>
         <label><%= f.radio_button :add, 2 %>新しいお届け先</label>
-            <%= f.fields_for :new_add do|na| %>
-                <%= na.label :postal_code,"郵便番号"%>
-                <%= na.text_field :postal_code %>
-                <%= na.label :address, "住所"%>
-                <%= na.text_field :address %>
-                <%= na.label :name,"宛名" %>x
-                <%= na.text_field :name %>
-            <%end%>
-        </div>
+            <div class="mt-3 row ml-4">
+                <div class="col-md-7">
+                    <%= f.fields_for :new_add do|na| %>
+                        <table class="table table-borderless">
+                            <tr>
+                                <td><%= na.label :postal_code,"郵便番号(ハイフンなし)"%></td>
+                                <td>
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <%= na.text_field :postal_code,class: "form-control" %>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
 
-        <%= f.submit "確認画面へ進む", class: "btn btn-danger" %>
+                            <tr>
+                                <td><%= na.label :address, "住所"%></td>
+                                <td><%= na.text_field :address,class: "form-control" %></td>
+                            </tr>
+
+                            <tr>
+                                <td><%= na.label :name,"宛名" %></td>
+                                <td>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <%= na.text_field :name,class: "form-control" %>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    <%end%>
+                </div>
+            </div>
+        </div>
+        <div class="text-center">
+            <%= f.submit "確認画面へ進む", class: "btn btn-primary" %>
+        </div>
 
 
 
