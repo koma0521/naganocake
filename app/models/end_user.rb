@@ -25,11 +25,11 @@ class EndUser < ApplicationRecord
 
 
   def name
-    [first_name,last_name].join('')
+    [last_name,first_name].join('')
   end
 
   def name_kana
-    [first_name_kana,last_name_kana].join('')
+    [last_name_kana,first_name_kana].join('')
   end
 
   def active_for_authentication?

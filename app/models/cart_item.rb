@@ -3,7 +3,7 @@ class CartItem < ApplicationRecord
   belongs_to :end_user
   validates :amount,numericality: { only_integer: true }
   def subtotal
-    item.price * amount
+    item.tax_price * amount
   end
 
   def tax_price

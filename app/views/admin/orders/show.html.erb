@@ -55,7 +55,7 @@
                     <td><%= detail.item.name%></td>
                     <td><%= detail.price%></td>
                     <td><%= detail.amount%></td>
-                    <td><%= detail.subtotal%></td>
+                    <td><%= detail.subtotal.floor.to_s(:delimited)%></td>
                     <td>
                         <%= form_for detail,url: admin_order_detail_path(detail) do |f|%>
                             <div class="form-row">
@@ -76,7 +76,7 @@
         <table class="table table-borderless">
             <tr>  
                 <td>商品合計</td>  
-                <td><%= @order.total_price.to_s(:delimited)%></td>
+                <td><%= @order.total_price.floor.to_s(:delimited)%></td>
             </tr>
             <tr>
                 <td>送料</td>
@@ -85,7 +85,7 @@
             <tr>
                 <td>請求金額合計</td>
                 <% @billing_payment = @order.total_price.to_i + @order.shipping_cost.to_i%>
-                <td><%= @billing_payment.to_s(:delimited)%></td>
+                <td><%= @billing_payment.floor.to_s(:delimited)%></td>
             </tr>
         </table>
     </div>
