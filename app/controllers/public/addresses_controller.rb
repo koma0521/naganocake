@@ -2,7 +2,7 @@ class Public::AddressesController < ApplicationController
     before_action :authenticate_end_user!
     def index
         @address = Address.new
-        @addresses = Address.all
+        @addresses = Address.where(end_user_id: current_end_user.id)
     end
 
     def edit

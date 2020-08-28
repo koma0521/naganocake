@@ -8,6 +8,6 @@ class Item < ApplicationRecord
     validates :price, numericality: true
 
     def tax_price
-        (price * 1.10).floor.to_s(:delimited)
+        (price * 1.10).floor
     end
 end

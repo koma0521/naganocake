@@ -17,7 +17,7 @@
           <% if end_user_signed_in? %>
             <%= link_to "Nagano",items_path,class: "navbar-brand"%>
           <% else %>
-            <%= link_to "Nagano",top_path,class: "navbar-brand"%>
+            <%= link_to "Nagano",end_user_top_path,class: "navbar-brand"%>
           <% end %>
 
           <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">

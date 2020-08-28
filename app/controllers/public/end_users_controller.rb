@@ -24,11 +24,11 @@ class Public::EndUsersController < ApplicationController
     def withdraw
         end_user = EndUser.find(current_end_user.id)
         end_user.update(is_deleted: "退会済み")
-        redirect_to root_path
+        redirect_to end_user_top_path
     end
 
     private
         def end_user_params
-            params.require(:end_user).permit(:first_name,:last_name,:first_name_kana,:last_name_kana,:postal_code,:telephone_code,:address,:email)
+            params.require(:end_user).permit(:first_name,:last_name,:first_name_kana,:last_name_kana,:postal_code,:telephone_number,:address,:email)
         end
 end

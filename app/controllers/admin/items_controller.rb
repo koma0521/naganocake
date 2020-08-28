@@ -15,7 +15,7 @@ class Admin::ItemsController < ApplicationController
     def create
         item = Item.new(item_params)
         if item.save
-            redirect_to admin_items_path
+            redirect_to admin_item_path(item)
         else
             @item = item
             render 'new'
@@ -39,6 +39,11 @@ class Admin::ItemsController < ApplicationController
             @item = item
             render 'edit'
         end
+    end
+
+    def top
+        search_date = Date.today
+        @order = Order.where(created_at: search_date.in_time_zone.all_day)
     end
 
     private

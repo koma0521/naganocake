@@ -11,10 +11,9 @@ Rails.application.routes.draw do
   }
 
   get 'end_users_mypage' => "public/end_users#show",as: :mypage
-  root "public/items#top"
   
   scope module: :public do
-    root 'top#top',as: :top
+    root "items#top",as: :end_user_top
     get 'about' => "items#about",as: :about
     resources :addresses,except: [:show,:new]
     resources :items,only: [:index,:show]
@@ -29,6 +28,7 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
+    root 'top#top',as: :top
     resources :items,except: [:destroy]
     resources :genres,only: [:index,:create,:edit,:update]
     resources :end_users,except: [:destroy,:new,:create]

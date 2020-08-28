@@ -7,7 +7,7 @@
     <div class="col-xs-6 ml-4">
         <p class="font-size-ex"><%= @item.name%></p>
         <p><%= simple_format(@item.introduction, {}, sanitize: false) %></p>
-        <p class="font-size-big">¥<%= @item.tax_price%><span class="font-size-md">(税込み)</span></p>
+        <p class="font-size-big">¥<%= @item.tax_price.to_s(:delimited)%><span class="font-size-md">(税込み)</span></p>
     </div>
 </div>
 <% if end_user_signed_in?%>

@@ -2,16 +2,22 @@ class ApplicationController < ActionController::Base
     def after_sign_in_path_for(resource)
         case resource
         when EndUser
-          mypage_path # ログイン後に遷移するpathを設定
+          end_user_top_path # ログイン後に遷移するpathを設定
         when Admin
          admin_top_path
         end
     end
 
-    def after_log_out_path_for(resource)
-        root_path
-    end
 
+    def after_sign_out_path_for(resource_or_scope)
+      if resource_or_scope == :end_user
+        new_end_user_session_path
+      elsif resource_or_scope == :admin
+        new_admin_session_path
+      else
+        end_user_top_path
+      end
+    end
     
 
     before_action :configure_permitted_parameters, if: :devise_controller?
