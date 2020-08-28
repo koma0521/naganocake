@@ -10,10 +10,11 @@
         <p class="font-size-big">¥<%= @item.tax_price%><span class="font-size-md">(税込み)</span></p>
     </div>
 </div>
-
+<% if end_user_signed_in?%>
 <div class="row mt-5">
     <div class="offset-md-4">
         <%= form_for @cart_item,url: cart_items_path do |f| %>
+            <%= render partial: "layouts/error_messages",locals: {model: @cart_item}%> 
             <%= f.hidden_field :item_id,value:@item.id %>
             <div class="form-row ">
                 <div class="col">
@@ -26,3 +27,4 @@
         <% end %>
     </div>
 </div>
+<% end %>

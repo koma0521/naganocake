@@ -24,8 +24,8 @@ class Public::OrdersController < ApplicationController
             @order.postal_code = @send_address.postal_code
             @order.address = @send_address.address
             @order.name = @send_address.name
-        when 3
-            @order.postal_code = paramas[:order][:new_add][:postal_code]
+        when 2
+            @order.postal_code = params[:order][:new_add][:postal_code]
             @order.address = params[:order][:new_add][:address]
             @order.name = params[:order][:new_add][:name]             
         end
@@ -38,8 +38,6 @@ class Public::OrdersController < ApplicationController
     def create
         if current_end_user.cart_items.exists?
             @order = Order.new(order_params)
-
-            add = params[:order][:add].to_i
 
             if Address.find_by(address: @order.address).nil?
                 @address = Address.new

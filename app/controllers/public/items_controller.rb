@@ -1,6 +1,9 @@
-class Public::ItemsController < ApplicationController
-    before_action :authenticate_end_user!,expect: [:top]  
+class Public::ItemsController < ApplicationController  
     def top
+        @items = Item.limit(4)
+    end
+
+    def about
     end
 
     def index

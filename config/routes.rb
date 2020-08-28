@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   root "public/items#top"
   
   scope module: :public do
+    root 'top#top',as: :top
+    get 'about' => "items#about",as: :about
     resources :addresses,except: [:show,:new]
     resources :items,only: [:index,:show]
     delete "cart_items/destroy_all" => "cart_items#destroy_all",as: :destroy_all
@@ -27,7 +29,6 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    root 'top#top',as: :top
     resources :items,except: [:destroy]
     resources :genres,only: [:index,:create,:edit,:update]
     resources :end_users,except: [:destroy,:new,:create]
