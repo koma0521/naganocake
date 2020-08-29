@@ -11,12 +11,14 @@
     </thead>
     <tbody>
         <% @orders.each do |order| %>
-            <tr>
-                <td><%= link_to order.created_at.strftime('%Y/%m/%d %H:%M:%S'),admin_order_path(order)%></td>
-                <td><%= order.end_user.name%></td>
-                <td><%= order.total_amount%></td>
-                <td><%= order.status%></td>
-            </tr>
+            <% if order.end_user.is_deleted == "有効" %>
+                <tr>
+                    <td><%= link_to order.created_at.strftime('%Y/%m/%d %H:%M:%S'),admin_order_path(order)%></td>
+                    <td><%= order.end_user.name%></td>
+                    <td><%= order.total_amount%></td>
+                    <td><%= order.status%></td>
+                </tr>
+            <% end %>
         <% end %>
     </tbody>
 </table>

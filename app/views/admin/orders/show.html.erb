@@ -52,22 +52,24 @@
             </thead>
             <tbody>
                 <% @order.order_details.each do |detail| %>
-                    <td><%= detail.item.name%></td>
-                    <td><%= detail.price%></td>
-                    <td><%= detail.amount%></td>
-                    <td><%= detail.subtotal.floor.to_s(:delimited)%></td>
-                    <td>
-                        <%= form_for detail,url: admin_order_detail_path(detail) do |f|%>
-                            <div class="form-row">
-                                <div class="col">
-                                    <%= f.select :making_status, OrderDetail.making_statuses.keys.to_a,{},class: "form-control"%>
+                    <tr>
+                        <td><%= detail.item.name%></td>
+                        <td><%= detail.price%></td>
+                        <td><%= detail.amount%></td>
+                        <td><%= detail.subtotal.floor.to_s(:delimited)%></td>
+                        <td>
+                            <%= form_for detail,url: admin_order_detail_path(detail) do |f|%>
+                                <div class="form-row">
+                                    <div class="col">
+                                        <%= f.select :making_status, OrderDetail.making_statuses.keys.to_a,{},class: "form-control"%>
+                                    </div>
+                                    <div class="col">
+                                        <%= f.submit "更新する",class: "btn btn-primary btn-sm"%>
+                                    </div>
                                 </div>
-                                <div class="col">
-                                    <%= f.submit "更新する",class: "btn btn-primary btn-sm"%>
-                                </div>
-                            </div>
-                        <% end %>
-                    </td>
+                            <% end %>
+                        </td>
+                    </tr>
                 <% end %>
             </tbody>
         </table>
